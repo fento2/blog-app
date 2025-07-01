@@ -29,7 +29,7 @@ function SignUpPage() {
                 alert("isi semua");
             } else {
 
-                const response = await axios.post("https://betterpail-us.backendless.app/api/data/data%20user",
+                const response = await axios.post("https://magicalteeth-us.backendless.app/api/data/accounts",
                     {
                         username: inUsernameRef.current?.value,
                         email: inEmailRef.current?.value,

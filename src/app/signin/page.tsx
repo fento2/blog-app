@@ -33,15 +33,15 @@ function SignInPage() {
                 return;
             }
 
-            
-            const response = await axios.get(
-                "https://betterpail-us.backendless.app/api/data/data%20user"
-            );
+
+            const response = await axios.get("https://magicalteeth-us.backendless.app/api/data/accounts");
 
             const foundUser = response.data.find(
-                (props: IUser ) => {
-                    props.email === inEmailRef.current?.value &&
-                    props.password === inPasswordRef.current?.value
+                (props: IUser) => {
+                    return (
+                        props.email === inEmailRef.current?.value &&
+                        props.password === inPasswordRef.current?.value
+                    );
                 }
             );
 
@@ -60,7 +60,7 @@ function SignInPage() {
             }
         } catch (error) {
             console.log(error);
-          
+
         }
     }
 

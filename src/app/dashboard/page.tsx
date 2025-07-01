@@ -12,7 +12,7 @@ import { useAppSelector } from "@/lib/redux/hook";
 
 
 export default function DashboardPage() {
-  
+
   const inTitleRef = useRef<HTMLInputElement>(null);
   const inThumbnailRef = useRef<HTMLInputElement>(null);
   const inContentRef = useRef<HTMLInputElement>(null);
@@ -20,15 +20,14 @@ export default function DashboardPage() {
   const router = useRouter();
   const isLogin = useAppSelector((state) => state.accountReducer.isLogin);
 
-  useEffect(()=>{   //BUAT VALIDASI UDH LOGIN BELOM
-    if (!isLogin){
-
+  useEffect(() => {   //BUAT VALIDASI UDH LOGIN BELOM
+    if (!isLogin) {
       router.push("/");
     }
 
   }, [isLogin]);
-    
-  
+
+
   async function UploadArticle() {
 
 
@@ -44,7 +43,7 @@ export default function DashboardPage() {
       }
 
       const response = await axios.post(
-        "https://betterpail-us.backendless.app/api/data/data%20article",
+        "https://magicalteeth-us.backendless.app/api/data/article",
         {
           title: inTitleRef.current?.value,
           thumbnail: inThumbnailRef.current?.value,
@@ -55,6 +54,9 @@ export default function DashboardPage() {
 
       console.log(response.data);
       alert("Upload berhasil!");
+      
+      router.push("/");
+
     } catch (error) {
       console.error(error);
     }
@@ -91,11 +93,10 @@ export default function DashboardPage() {
               <Input placeholder="input category" ref={inCategoryRef} />
             </div>
 
-            <Button type="button" onClick={() => {UploadArticle
-              router.push("/")
-            }}>
+            <Button type="button" onClick={UploadArticle}>
               Upload
             </Button>
+
           </div>
         </CardContent>
       </Card>
